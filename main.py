@@ -1,6 +1,6 @@
 # This is a sample Python script.
 
-from ds_arrays.TrappingRainWater import calculate_trapped_water
+from linked_lists.LinkedList import LinkedList
 
 
 # Press ⌃R to execute it or replace it with your code.
@@ -13,8 +13,17 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    print(calculate_trapped_water([4, 1, 3, 1, 5]))
-    print(calculate_trapped_water([1, 0, 2, 1, 3, 1, 2, 0, 3]))
+    linked_list = LinkedList()
+    linked_list.insertAtHead("First")
+    linked_list.insertAtHead("Second")
+    linked_list.insertAtHead("Third")
+    linked_list.insertAtHead("Fourth")
+    linked_list.insertAtHead("Next")
+    print(linked_list.getNodeAtIndex(0).value)
+    print(linked_list.getNodeAtIndex(1).value)
+    print(linked_list.getNodeAtIndex(2).value)
+    print(linked_list.getNodeAtIndex(3).value)
+    print(linked_list.getNodeAtIndex(4).value)
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
