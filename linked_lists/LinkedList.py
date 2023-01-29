@@ -30,7 +30,8 @@ class LinkedList:
     def getNodeAtIndex(self, index):
         if index < 0 or index >= self.length:
             return None
-        if index == 0: return self.head
+        if index == 0:
+            return self.head
 
         if index > 0 and index < self.length:
             current = self.head.pointer
