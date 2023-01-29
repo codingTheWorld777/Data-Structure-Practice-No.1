@@ -14,9 +14,9 @@ class LinkedList:
     # Insert a node from the backward of a linked list
     def insertAtTail(self, data):
         if self.length == 0:
-            return self.insertAtHead(Node(data, self.head))
+            return self.insertAtHead(data)
 
-        current = self.head.pointer
+        current = self.head
         while current.pointer:
             current = current.pointer
 

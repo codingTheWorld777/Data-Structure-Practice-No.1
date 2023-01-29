@@ -3,6 +3,7 @@ from .Node import DoublyNode
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
         self.length = 0
 
     # Get a node in linked list by its position
@@ -21,29 +22,29 @@ class DoublyLinkedList:
     # Insert a node from the forward of a doubly linked list
     def insertAtHead(self, data):
         new_node = DoublyNode(None, data, self.head)
-        if self.head:
+        if self.head is None:
+            self.head = new_node
+        else:
             self.head.prev_pointer = new_node
+            new_node.next_pointer = self.head
 
         self.head = new_node
         self.length += 1
 
     # Insert a node from the backward of a doubly linked list
     def insertAtTail(self, data):
-        if not self.head:
-            return self.insertAtHead(data)
+        last_node = self.tail
+        new_node = DoublyNode(last_node, data, None)
 
-        # Get last node in a doubly linked list
-        # self.getNodeAtIndex(self.length - 1)
-        current_node = self.head
-        while current_node.next_pointer:
-            current_node = current_node.next_pointer
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev_pointer = last_node
+            last_node.next_pointer = new_node
 
-        # Set up new node and insert it into doubly linked list
-        new_node = DoublyNode(current_node, data, None)
-        current_node.next_pointer = new_node
+        self.tail = new_node
         self.length += 1
-
-        return
 
     # Insert a node at an arbitrary position in a doubly linked list
     def insertAtIndex(self, data, index):
@@ -62,7 +63,7 @@ class DoublyLinkedList:
 
     # Delete a doubly node from the forward of a doubly linked list
     def removeAtHead(self):
-        if not self.head:
+        if self.head is None:
             return None
 
         node = self.head
@@ -77,13 +78,15 @@ class DoublyLinkedList:
 
     # Delete a doubly node from the backward of a doubly linked list
     def removeAtTail(self):
-        if not self.head:
+        if self.head is None:
             return None
         if self.length == 1:
             return self.removeAtHead()
 
-        node = self.getNodeAtIndex(self.length - 2)
-        node.next_pointer = None
+        last_node = self.tail
+        last_node.prev_pointer.next_pointer = None
+
+        self.tail = last_node.prev_pointer
         self.length -= 1
 
 
